@@ -117,10 +117,12 @@ export namespace Icon {
       let iconName = this.name;
       iconName = iconName.startsWith("icon-") ? iconName.substring(5) : iconName;
 
-      if (this.sizeOverrided) {
-        return `${iconName.split("_")[0]}_${this.iconFontSize}`;
-      }
-      return iconNames.includes(iconName) ? `icon-${iconName}` : this.consoleHandler("name-error", iconName);
+      // if (this.sizeOverrided) {
+      //   return `${iconName.split("_")[0]}_${this.iconFontSize}`;
+      // }
+      //return iconNames.includes(iconName) ? `icon-${iconName}` : this.consoleHandler("name-error", iconName);
+      return `icon-${iconName}`;
+      //return this.consoleHandler("name-error", iconName);
     }
 
     get iconStyleMap() {

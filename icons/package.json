@@ -16,7 +16,7 @@
   "main": "scss/momentum-ui-icons.scss",
   "scripts": {
     "build": "yarn build:lib",
-    "build:lib": "node ../tools/icons/icons-build.js momentum-ui-icons",
+    "build:lib": "node ../tools/icons/icons-build.js MomentumFontIcon",
     "ci:postpublish": "node ../tools/postpublish.js",
     "ci:publishCDN": "run-s replaceFontURLs pushToS3",
     "pushToS3": "node ../tools/pushToS3.js --library=icons",

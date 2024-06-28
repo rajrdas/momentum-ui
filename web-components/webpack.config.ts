@@ -19,9 +19,16 @@ const pCss = path.resolve("src/assets/styles");
 const pImg = path.resolve("src/assets/images");
 const p1 = path.resolve("./node_modules/@momentum-ui");
 const p2 = path.resolve("../node_modules/@momentum-ui");
+const pmd = path.resolve("./node_modules/@momentum-design");
+
 const pMomentum = fs.existsSync(p1) ? p1 : fs.existsSync(p2) ? p2 : null;
 if (!pMomentum) {
   throw new Error("Can't find Momentum UI");
+}
+
+const pMomentumDesign = fs.existsSync(pmd) ? pmd : null;
+if (!pMomentumDesign) {
+  throw new Error("Can't find Momentum Design");
 }
 
 const common: webpack.Configuration = {
@@ -77,7 +84,7 @@ function ruleCSS({ isDev }: { isDev: boolean }) {
       { loader: "css-loader", options: { sourceMap: isDev, importLoaders: 2 } },
       { loader: path.resolve("./stats/stats-loader.js") },
       {
-        loader: "sass-loader",        
+        loader: "sass-loader",
         options: {
           implementation: sass,
           sourceMap: isDev,
@@ -123,6 +130,7 @@ export const commonDev = merge(common, {
       { from: `${pMomentum}/core/fonts`, to: "fonts" },
       { from: `${pMomentum}/core/images`, to: "images" },
       { from: `${pMomentum}/icons/fonts`, to: "icons/fonts" },
+      { from: `${pMomentumDesign}/icons/dist/fonts`, to: "icons/fonts" },
       { from: `${pMomentum}/icons/fonts`, to: "fonts" },
       { from: `${pMomentum}/core/css/momentum-ui.min.css`, to: "css" },
       { from: `${pMomentum}/core/css/momentum-ui.min.css.map`, to: "css" },
@@ -236,11 +244,13 @@ const commonDist = merge(common, {
       { from: `${pMomentum}/core/images`, to: "assets/images" },
       { from: `${pMomentum}/icons/fonts`, to: "assets/fonts" },
       { from: `${pMomentum}/icons/fonts`, to: "assets/icons/fonts" },
+      { from: `${pMomentumDesign}/icons/dist/fonts`, to: "assets/icons/fonts" },
       { from: `${pMomentum}/core/css/momentum-ui.min.css`, to: "assets/styles" },
       { from: `${pMomentum}/core/css/momentum-ui.min.css.map`, to: "assets/styles" },
       { from: `${pMomentum}/icons/css/momentum-ui-icons.min.css`, to: "assets/styles" },
       { from: `${pCss}/*.css`, to: "assets/styles", flatten: true }
     ]),
+
     new RemovePlugin({
       after: {
         log: false,

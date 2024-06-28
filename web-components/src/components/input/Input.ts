@@ -302,7 +302,7 @@ export namespace Input {
           }
         })
       );
-      document.dispatchEvent(new CustomEvent('on-widget-update')); 
+      document.dispatchEvent(new CustomEvent("on-widget-update"));
       this.handleChange(event);
     }
 
@@ -425,7 +425,7 @@ export namespace Input {
                   <md-spinner size="20"></md-spinner>
                 `
               : html`
-                  <md-icon ariaHidden="true" name="search_20"></md-icon>
+                  <md-icon ariaHidden="true" name="search-bold"></md-icon>
                 `}
           </div>
         `;
